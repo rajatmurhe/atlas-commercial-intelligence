@@ -2,7 +2,7 @@
 
 [![Verify application](https://github.com/rajatmurhe/atlas-commercial-intelligence/actions/workflows/ci.yml/badge.svg)](https://github.com/rajatmurhe/atlas-commercial-intelligence/actions/workflows/ci.yml)
 
-An independent portfolio project for investigating commercial performance. **All data is synthetic. This project is not affiliated with MSD.**
+An independent portfolio project for investigating commercial performance. **All data is synthetic.
 
 ![Atlas commercial performance dashboard](docs/screenshots/overview.png)
 
