@@ -1,0 +1,8 @@
+{
+  "engine": "n8n 2.41.6",
+  "trigger": "manual CLI test of weekly-report HTTP node",
+  "status": "success",
+  "finished": true,
+  "destination": "isolated Docker API and PostgreSQL",
+  "schedule_active": false
+}

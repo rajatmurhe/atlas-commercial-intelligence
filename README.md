@@ -21,7 +21,7 @@ An independent portfolio project for investigating commercial performance. **All
 - Seasonal naïve / ETS forecasting with a held-out test, sales-drop screen, and randomized synthetic promotion analysis.
 - Local stdio MCP tools share the query validator. Optional Redis caching and Langfuse callback integration.
 
-This is an initial local release, not the completed portfolio roadmap. Live-model benchmarks, hosted deployment, Tableau, n8n, a recorded video and a real Langfuse screenshot remain to be completed. Guided results must not be described as LLM accuracy.
+This is an initial local release, not the completed portfolio roadmap. Live-model benchmarks, hosted deployment, native Tableau validation, a recorded video and a real Langfuse screenshot remain to be completed. n8n manual execution is verified and its local schedule is published. Guided results must not be described as LLM accuracy.
 
 ## Local setup
 
@@ -84,7 +84,7 @@ flowchart LR
 2. Evaluate live prompt variants; publish real failures, latency, and token costs.
 3. Expand clarification and temporal/filter coverage.
 4. Exercise the deployment manifests and complete cloud release, with secret management and global quotas.
-5. Build the Tableau workbook, activate and verify n8n, and record the two-minute demo.
+5. Validate the generated Tableau workbook in Tableau, observe a scheduled n8n run, and record the two-minute demo.
 
 ## Verified local release
 
@@ -121,3 +121,5 @@ The guided suite has no failures on its bounded, development-visible cases. This
 ## Development location
 
 Use a local checkout outside cloud-sync folders. Keep `.env`, database storage and dependencies outside source control. The bootstrap script creates a dedicated development database; it does not recover prior chat history.
+
+Latest security release: [GitHub Actions passed](https://github.com/rajatmurhe/atlas-commercial-intelligence/actions/runs/39219806517), including 19 backend tests, the 60-case benchmark and the production build.
