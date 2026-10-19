@@ -3,6 +3,7 @@
 import json
 import sys
 import uuid
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -24,22 +25,27 @@ def main():
     verified = False
     if cfg.langfuse_public_key and cfg.langfuse_secret_key:
         get_client(public_key=cfg.langfuse_public_key).flush()
-        response = httpx.get(
-            cfg.langfuse_base_url.rstrip("/") + "/api/public/v2/observations",
-            auth=(cfg.langfuse_public_key, cfg.langfuse_secret_key),
-            params={
-                "fromStartTime": (now - timedelta(hours=1)).isoformat(),
-                "toStartTime": (now + timedelta(minutes=1)).isoformat(),
-                "limit": 100,
-                "fields": "core,basic,metadata",
-            },
-            timeout=30,
-        )
-        if response.status_code == 200:
-            verified = any(
-                answer["run_id"] in json.dumps(o.get("metadata", {}))
-                for o in response.json().get("data", [])
+        for attempt in range(6):
+            response = httpx.get(
+                cfg.langfuse_base_url.rstrip("/") + "/api/public/v2/observations",
+                auth=(cfg.langfuse_public_key, cfg.langfuse_secret_key),
+                params={
+                    "fromStartTime": (now - timedelta(hours=1)).isoformat(),
+                    "toStartTime": (now + timedelta(minutes=1)).isoformat(),
+                    "limit": 100,
+                    "fields": "core,basic,metadata",
+                },
+                timeout=30,
             )
+            if response.status_code == 200:
+                verified = any(
+                    answer["run_id"] in json.dumps(o.get("metadata", {}))
+                    for o in response.json().get("data", [])
+                )
+            if verified:
+                break
+            if attempt < 5:
+                time.sleep(5)
     result = {
         "model": cfg.gemini_model if cfg.llm_provider == "gemini" else cfg.openai_model,
         "provider": cfg.llm_provider,
