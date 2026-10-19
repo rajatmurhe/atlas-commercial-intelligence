@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='utf-8'?>
+<workbook version="9.3" source-platform="mac">
+  <datasources>
+    <datasource name="atlas_portfolio" caption="Atlas synthetic portfolio" inline="true" version="9.3">
+      <connection class="textscan" directory="Data" filename="portfolio.csv" separator="," header="yes" charset="UTF-8">
+        <relation name="portfolio.csv" table="[portfolio.csv]" type="table" />
+      </connection>
+      <column name="[month]" datatype="date" role="dimension" type="ordinal" />
+      <column name="[product]" datatype="string" role="dimension" type="nominal" />
+      <column name="[category]" datatype="string" role="dimension" type="nominal" />
+      <column name="[country]" datatype="string" role="dimension" type="nominal" />
+      <column name="[territory]" datatype="string" role="dimension" type="nominal" />
+      <column name="[channel]" datatype="string" role="dimension" type="nominal" />
+      <column name="[revenue]" datatype="real" role="measure" type="quantitative" />
+      <column name="[units]" datatype="integer" role="measure" type="quantitative" />
+      <column name="[target]" datatype="real" role="measure" type="quantitative" />
+      <column name="[promotion]" datatype="boolean" role="dimension" type="nominal" />
+      <column name="[gap]" datatype="real" role="measure" type="quantitative" />
+      <column name="[attainment]" datatype="real" role="measure" type="quantitative" />
+      <column name="[prior_year_revenue]" datatype="real" role="measure" type="quantitative" />
+      <column name="[Attainment]" datatype="real" role="measure" type="quantitative">
+        <calculation formula="SUM([revenue]) / SUM([target])" class="tableau" />
+      </column>
+      <column name="[Growth]" datatype="real" role="measure" type="quantitative">
+        <calculation formula="IF COUNT([prior_year_revenue]) = COUNT([revenue]) THEN SUM([revenue]) / SUM([prior_year_revenue]) - 1 END" class="tableau" />
+      </column>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name="Revenue · USD">
+      <table>
+        <view>
+          <datasources>
+            <datasource name="atlas_portfolio" caption="Atlas synthetic portfolio" />
+          </datasources>
+          <datasource-dependencies datasource="atlas_portfolio">
+            <column name="[country]" datatype="string" role="dimension" type="nominal" />
+            <column name="[month]" datatype="date" role="dimension" type="ordinal" />
+            <column name="[revenue]" datatype="real" role="measure" type="quantitative" />
+            <column-instance column="[revenue]" derivation="Sum" name="[sum:revenue:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <filter column="[atlas_portfolio].[month]" class="quantitative">
+            <min>#2026-07-01#</min>
+            <max>#2026-09-01#</max>
+          </filter>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Text" />
+            <encodings>
+              <text column="[atlas_portfolio].[sum:revenue:qk]" />
+            </encodings>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name="Target attainment">
+      <table>
+        <view>
+          <datasources>
+            <datasource name="atlas_portfolio" caption="Atlas synthetic portfolio" />
+          </datasources>
+          <datasource-dependencies datasource="atlas_portfolio">
+            <column name="[Attainment]" datatype="real" role="measure" type="quantitative">
+              <calculation formula="SUM([revenue]) / SUM([target])" class="tableau" />
+            </column>
+            <column name="[country]" datatype="string" role="dimension" type="nominal" />
+            <column name="[month]" datatype="date" role="dimension" type="ordinal" />
+            <column name="[prior_year_revenue]" datatype="real" role="measure" type="quantitative" />
+            <column name="[revenue]" datatype="real" role="measure" type="quantitative" />
+            <column name="[target]" datatype="real" role="measure" type="quantitative" />
+            <column-instance column="[Attainment]" derivation="User" name="[usr:Attainment:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <filter column="[atlas_portfolio].[month]" class="quantitative">
+            <min>#2026-07-01#</min>
+            <max>#2026-09-01#</max>
+          </filter>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Text" />
+            <encodings>
+              <text column="[atlas_portfolio].[usr:Attainment:qk]" />
+            </encodings>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name="Year-over-year growth">
+      <table>
+        <view>
+          <datasources>
+            <datasource name="atlas_portfolio" caption="Atlas synthetic portfolio" />
+          </datasources>
+          <datasource-dependencies datasource="atlas_portfolio">
+            <column name="[Growth]" datatype="real" role="measure" type="quantitative">
+              <calculation formula="IF COUNT([prior_year_revenue]) = COUNT([revenue]) THEN SUM([revenue]) / SUM([prior_year_revenue]) - 1 END" class="tableau" />
+            </column>
+            <column name="[country]" datatype="string" role="dimension" type="nominal" />
+            <column name="[month]" datatype="date" role="dimension" type="ordinal" />
+            <column name="[prior_year_revenue]" datatype="real" role="measure" type="quantitative" />
+            <column name="[revenue]" datatype="real" role="measure" type="quantitative" />
+            <column name="[target]" datatype="real" role="measure" type="quantitative" />
+            <column-instance column="[Growth]" derivation="User" name="[usr:Growth:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <filter column="[atlas_portfolio].[month]" class="quantitative">
+            <min>#2026-07-01#</min>
+            <max>#2026-09-01#</max>
+          </filter>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Text" />
+            <encodings>
+              <text column="[atlas_portfolio].[usr:Growth:qk]" />
+            </encodings>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name="Monthly revenue">
+      <table>
+        <view>
+          <datasources>
+            <datasource name="atlas_portfolio" caption="Atlas synthetic portfolio" />
+          </datasources>
+          <datasource-dependencies datasource="atlas_portfolio">
+            <column name="[country]" datatype="string" role="dimension" type="nominal" />
+            <column name="[month]" datatype="date" role="dimension" type="ordinal" />
+            <column name="[revenue]" datatype="real" role="measure" type="quantitative" />
+            <column-instance column="[revenue]" derivation="Sum" name="[sum:revenue:qk]" pivot="key" type="quantitative" />
+            <column-instance column="[month]" derivation="None" name="[none:month:nk]" pivot="key" type="nominal" />
+          </datasource-dependencies>
+          <filter column="[atlas_portfolio].[month]" class="quantitative">
+            <min>#2026-07-01#</min>
+            <max>#2026-09-01#</max>
+          </filter>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Line" />
+          </pane>
+        </panes>
+        <rows>[atlas_portfolio].[sum:revenue:qk]</rows>
+        <cols>[atlas_portfolio].[none:month:nk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name="Market gap · USD">
+      <table>
+        <view>
+          <datasources>
+            <datasource name="atlas_portfolio" caption="Atlas synthetic portfolio" />
+          </datasources>
+          <datasource-dependencies datasource="atlas_portfolio">
+            <column name="[country]" datatype="string" role="dimension" type="nominal" />
+            <column name="[gap]" datatype="real" role="measure" type="quantitative" />
+            <column name="[month]" datatype="date" role="dimension" type="ordinal" />
+            <column-instance column="[gap]" derivation="Sum" name="[sum:gap:qk]" pivot="key" type="quantitative" />
+            <column-instance column="[country]" derivation="None" name="[none:country:nk]" pivot="key" type="nominal" />
+          </datasource-dependencies>
+          <filter column="[atlas_portfolio].[month]" class="quantitative">
+            <min>#2026-07-01#</min>
+            <max>#2026-09-01#</max>
+          </filter>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Bar" />
+          </pane>
+        </panes>
+        <rows>[atlas_portfolio].[none:country:nk]</rows>
+        <cols>[atlas_portfolio].[sum:gap:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name="Product gap · USD">
+      <table>
+        <view>
+          <datasources>
+            <datasource name="atlas_portfolio" caption="Atlas synthetic portfolio" />
+          </datasources>
+          <datasource-dependencies datasource="atlas_portfolio">
+            <column name="[country]" datatype="string" role="dimension" type="nominal" />
+            <column name="[gap]" datatype="real" role="measure" type="quantitative" />
+            <column name="[month]" datatype="date" role="dimension" type="ordinal" />
+            <column name="[product]" datatype="string" role="dimension" type="nominal" />
+            <column-instance column="[gap]" derivation="Sum" name="[sum:gap:qk]" pivot="key" type="quantitative" />
+            <column-instance column="[product]" derivation="None" name="[none:product:nk]" pivot="key" type="nominal" />
+          </datasource-dependencies>
+          <filter column="[atlas_portfolio].[month]" class="quantitative">
+            <min>#2026-07-01#</min>
+            <max>#2026-09-01#</max>
+          </filter>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Bar" />
+          </pane>
+        </panes>
+        <rows>[atlas_portfolio].[none:product:nk]</rows>
+        <cols>[atlas_portfolio].[sum:gap:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name="Atlas · Commercial review · Synthetic data">
+      <style />
+      <size sizing-mode="fixed" minwidth="1200" maxwidth="1200" minheight="800" maxheight="800" />
+      <zones>
+        <zone id="1" name="Revenue · USD" x="0" y="0" w="33333" h="22000" />
+        <zone id="2" name="Target attainment" x="33333" y="0" w="33333" h="22000" />
+        <zone id="3" name="Year-over-year growth" x="66666" y="0" w="33333" h="22000" />
+        <zone id="4" name="Monthly revenue" x="0" y="22000" w="33333" h="78000" />
+        <zone id="5" name="Market gap · USD" x="33333" y="22000" w="33333" h="78000" />
+        <zone id="6" name="Product gap · USD" x="66666" y="22000" w="33333" h="78000" />
+      </zones>
+    </dashboard>
+  </dashboards>
+</workbook>

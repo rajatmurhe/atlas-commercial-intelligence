@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     database_url: str
     query_database_url: str
     admin_database_url: str = ""
+    global_questions_per_hour: int = 200
+    session_questions_per_hour: int = 30
     api_key: str
     redis_url: str = ""
     agent_mode: str = "guided"

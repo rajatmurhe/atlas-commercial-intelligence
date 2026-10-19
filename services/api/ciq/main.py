@@ -12,6 +12,7 @@ from fastapi import FastAPI, Header, HTTPException, Depends
 from pydantic import BaseModel, Field
 from psycopg.types.json import Jsonb
 from .config import settings
+from .quota import reserve_question
 from .db import app_connection, metadata, normalize
 from .metrics import Scope, Country, Period, overview
 from .agent import run_agent
@@ -72,16 +73,7 @@ class ChatRequest(BaseModel):
 
 @app.post("/api/chat", dependencies=[Depends(authorize)])
 def chat(body: ChatRequest):
-    with app_connection() as conn:
-        count = conn.execute(
-            "SELECT count(*) AS n FROM app.runs WHERE session_id=%s AND created_at > now()-interval '15 minutes'",
-            (body.session_id,),
-        ).fetchone()["n"]
-    if count >= 30:
-        raise HTTPException(
-            429,
-            "This session has reached its 30-question limit. Try again in 15 minutes.",
-        )
+    reserve_question(str(body.session_id))
     started = time.perf_counter()
     try:
         return run_agent(

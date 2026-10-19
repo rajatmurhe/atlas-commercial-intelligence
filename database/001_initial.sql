@@ -56,6 +56,13 @@ CREATE TABLE IF NOT EXISTS app.briefs (
     created_at timestamptz NOT NULL DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS app.request_budgets (
+    bucket text NOT NULL, window_start timestamptz NOT NULL, used integer NOT NULL CHECK(used > 0),
+    PRIMARY KEY(bucket, window_start)
+);
+CREATE INDEX IF NOT EXISTS runs_session_time ON app.runs(session_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS briefs_session_time ON app.briefs(session_id, created_at DESC);
+
 -- Aggregate BEFORE joining targets: targets have no rep dimension.
 CREATE OR REPLACE VIEW analytics.v_sales_monthly AS
 WITH sales AS (

@@ -59,7 +59,7 @@ The target grain excludes reps. `v_sales_monthly` first aggregates reps and then
 
 The generator contains a deliberate Kuwait oncology drop and a randomized promotion effect. These are simulations, not pharmaceutical market findings. The promotion experiment uses 16 randomized territories and an exact permutation test; its interval is an approximate Welch interval. Forecast selection uses a validation window; the final six months are held out for evaluation. Forecast residual bands are exploratory, not calibrated multi-horizon coverage. Sales-drop detection is a descriptive screen, not causal diagnosis.
 
-The guided planner supports a bounded vocabulary and four reporting periods. Out-of-scope requests should clarify or refuse; benchmark expansion is needed to expose false acceptances. No rep-level performance conclusions should be drawn from territory aggregation. The public deployment will need global abuse controls beyond the current per-session question quota.
+The guided planner supports a bounded vocabulary and four reporting periods. Out-of-scope requests should clarify or refuse; benchmark expansion is needed to expose false acceptances. No rep-level performance conclusions should be drawn from territory aggregation. The API reserves global and per-session hourly investigation budgets atomically in PostgreSQL. Hosting still needs edge-level protection for other public endpoints.
 
 ## Architecture
 
@@ -88,7 +88,7 @@ flowchart LR
 
 ## Verified local release
 
-On the local checkout, 18 backend tests pass and the Next.js production build passes. The guided regression benchmark passes 60/60 cases (median 638 ms; p95 1,347 ms). This measures deterministic regression accuracy, not LLM accuracy. See `evals/results-guided-evidence.json` for the full results.
+On the local checkout, 19 backend tests pass and the Next.js production build passes. The guided regression benchmark passes 60/60 cases (median 638 ms; p95 1,347 ms). This measures deterministic regression accuracy, not LLM accuracy. See `evals/results-guided-evidence.json` for the full results.
 
 HTTP smoke checks passed for the frontend, overview, chat, feedback, saved briefs, data quality, forecast/promotion analysis, API authentication, and weekly-report idempotency. The 12,288-row BI export reconciles Q3 revenue and target totals against the API. The ETL loaded 24,576 sales records and passed eight quality checks.
 
@@ -96,17 +96,17 @@ Browser desktop verification now covers the dashboard, investigation, SQL toggle
 
 ## Release tooling added
 
-- Dockerfiles and `compose.yaml`: PostgreSQL, Redis, one-time seed job, API and web. Start with `python3 scripts/compose_env.py`, then `docker compose --env-file .env.compose up --build`. Docker execution still needs a running daemon.
+- Dockerfiles and `compose.yaml`: PostgreSQL, Redis, one-time seed job, API and web. Start with `python3 scripts/compose_env.py`, then `docker compose --env-file .env.compose up --build`. The local Compose stack was built and passed HTTP checks for overview, chat, analytics and brief persistence.
 - `infra/deploy-cloud-run.sh`: explicit project/region/runtime identity and Secret Manager references, private service by default. See `infra/README.md` for the remaining Vercel-to-GCP identity integration.
 - `workflows/weekly-review.n8n.json`: importable, inactive Monday 08:00 Dubai workflow. Calls an idempotent endpoint that persists a weekly report in PostgreSQL.
-- `scripts/export_bi.py`: complete shared-view export plus data-version manifest for Tableau. The export/specification is not a completed Tableau workbook.
+- `scripts/export_bi.py`: complete shared-view export plus data-version manifest for Tableau. A generated TWBX package is included; native Tableau rendering remains unverified.
 - `evals/run.py --mode live --variant baseline|evidence`: records scope/result accuracy, refusal precision/recall, clarification accuracy, latency and token usage. Optional `--input-price` and `--output-price` accept verified USD-per-million-token prices; unconfigured prices remain null.
 - `scripts/compare_prompts.py`: runs both live prompts when credentials/model are configured. No live scores are fabricated.
 - `docs/business-brief.md` and `docs/demo-script.md`: decision brief and two-minute recording script. A recorded video remains pending.
 
 Current environment check: Vercel is logged out, gcloud is not installed, and the project's `.env` has no OpenAI model/key or Langfuse credentials. Cloud destinations have not been selected. These block live-model comparisons, remote traces and deployment, not local development.
 
-Compose configuration, shell syntax, Python syntax, and workflow JSON validation also pass. Container execution, cloud hosting, remote traces, and live-model comparisons remain unverified.
+Compose configuration, shell syntax, Python syntax, and workflow JSON validation also pass. Cloud hosting, remote traces, and live-model comparisons remain unverified. The initial [GitHub Actions run passed](https://github.com/rajatmurhe/atlas-commercial-intelligence/actions/runs/39217734387).
 
 ## Evaluation results and failure analysis
 

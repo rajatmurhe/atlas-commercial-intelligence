@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@vercel/oidc": "^4.0.1",
     "lucide-react": "^0.468.0",
     "next": "16.4.2",
     "react": "19.3.1",

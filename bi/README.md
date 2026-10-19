@@ -17,6 +17,6 @@ Connect Tableau Public/Desktop to `portfolio.csv`; set month to Date and revenue
 
 Use the same country and date filters as the web dashboard to reconcile totals. Do not average the row-level attainment column. Portfolio share requires the selected portfolio denominator, not a market total.
 
-This folder contains an export script and dashboard specification, not a completed Tableau workbook. A native workbook and screenshot require Tableau authoring and visual QA; they are not claimed here.
+`atlas-commercial-review.twbx` now packages six worksheets, a dashboard layout, and the complete CSV. Regenerate it with `scripts/build_tableau.py`. XML structure and package contents are checked. Tableau is not installed here, so native rendering, filter interaction, formatting and a dashboard screenshot remain unverified; do not treat this as a finished BI deliverable yet.
 
 The verified export has 12,288 rows; Q3 2026 revenue and target totals reconcile with the API.

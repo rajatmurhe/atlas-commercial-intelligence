@@ -1,0 +1,8 @@
+{
+  "/": 200,
+  "/api/overview": 200,
+  "/api/quality": 200,
+  "/api/analysis": 200,
+  "chat": "answered",
+  "brief": "saved"
+}

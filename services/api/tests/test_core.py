@@ -119,3 +119,21 @@ def test_failed_run_has_reference_and_persisted_trace(monkeypatch):
         ).fetchone()
     assert row["response"]["status"] == "error"
     assert row["response"]["run_id"] in response.json()["detail"]
+
+
+def test_global_budget_is_shared_between_sessions(monkeypatch):
+    from ciq.config import settings
+    from ciq.quota import reserve_question
+    from ciq.db import app_connection
+    from fastapi import HTTPException
+
+    # Lower the cap to the existing global count, without deleting shared records.
+    reserve_question(str(uuid.uuid4()))
+    with app_connection() as conn:
+        used = conn.execute(
+            "SELECT used FROM app.request_budgets WHERE bucket='global' AND window_start=date_trunc('hour',now())"
+        ).fetchone()["used"]
+    monkeypatch.setattr(settings(), "global_questions_per_hour", used)
+    with pytest.raises(HTTPException) as exc:
+        reserve_question(str(uuid.uuid4()))
+    assert exc.value.status_code == 429

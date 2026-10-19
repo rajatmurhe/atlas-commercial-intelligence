@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
+import { backendIdentityHeaders } from "@/lib/cloud-auth";
 
 export const runtime = "nodejs";
 const allowed = new Set([
@@ -60,7 +61,11 @@ async function proxy(
     }
     const response = await fetch(url, {
       method: req.method,
-      headers: { "X-API-Key": key, "Content-Type": "application/json" },
+      headers: {
+        "X-API-Key": key,
+        ...(await backendIdentityHeaders()),
+        "Content-Type": "application/json",
+      },
       body,
       cache: "no-store",
       signal: AbortSignal.timeout(45000),
