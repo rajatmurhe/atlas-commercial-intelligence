@@ -84,7 +84,7 @@ def analyze(country="All markets"):
         "validation": validation_metrics,
         "test": test_metrics,
         "test_period": "April–September 2026",
-        "method": "Expanding-window one-month-ahead evaluation. Model selected on October 2025–March 2026 validation by MAE, then tested on six unseen months. Three-month future projections are exploratory.",
+        "method": "Expanding-window one-month-ahead evaluation. Model selected on April 2025–March 2026 validation by MAE, then tested on six unseen months. Three-month future projections are exploratory.",
         "interval_note": "The shaded band uses validation absolute residuals; it is not a calibrated multi-horizon prediction interval.",
         "anomaly": {
             "month": series[-1]["month"],

@@ -245,7 +245,7 @@
       }
     },
     "test_period": "April\u2013September 2026",
-    "method": "Expanding-window one-month-ahead evaluation. Model selected on October 2025\u2013March 2026 validation by MAE, then tested on six unseen months. Three-month future projections are exploratory.",
+    "method": "Expanding-window one-month-ahead evaluation. Model selected on April 2025\u2013March 2026 validation by MAE, then tested on six unseen months. Three-month future projections are exploratory.",
     "interval_note": "The shaded band uses validation absolute residuals; it is not a calibrated multi-horizon prediction interval.",
     "anomaly": {
       "month": "2026-09-01",
@@ -500,7 +500,7 @@
       }
     },
     "test_period": "April\u2013September 2026",
-    "method": "Expanding-window one-month-ahead evaluation. Model selected on October 2025\u2013March 2026 validation by MAE, then tested on six unseen months. Three-month future projections are exploratory.",
+    "method": "Expanding-window one-month-ahead evaluation. Model selected on April 2025\u2013March 2026 validation by MAE, then tested on six unseen months. Three-month future projections are exploratory.",
     "interval_note": "The shaded band uses validation absolute residuals; it is not a calibrated multi-horizon prediction interval.",
     "anomaly": {
       "month": "2026-09-01",

@@ -58,6 +58,7 @@ export function RevenueChart({ rows }: { rows: Row[] }) {
             }}
           />
           <Line
+            isAnimationActive={false}
             name="Prior year"
             type="monotone"
             dataKey="prior_year_revenue"
@@ -66,6 +67,7 @@ export function RevenueChart({ rows }: { rows: Row[] }) {
             strokeWidth={1.5}
           />
           <Line
+            isAnimationActive={false}
             name="Target"
             type="monotone"
             dataKey="target"
@@ -75,6 +77,7 @@ export function RevenueChart({ rows }: { rows: Row[] }) {
             strokeWidth={1.5}
           />
           <Area
+            isAnimationActive={false}
             name="Revenue"
             type="monotone"
             dataKey="revenue"
@@ -117,6 +120,7 @@ export function GapChart({ rows }: { rows: Row[] }) {
           />
           <ReferenceLine x={0} stroke="#607382" />
           <Bar
+            isAnimationActive={false}
             dataKey="gap"
             name="Gap to target"
             radius={[0, 3, 3, 0]}
@@ -136,7 +140,7 @@ export function ForecastChart({ data }: { data: Analysis }) {
     ...data.history
       .slice(-12)
       .map((r) => ({ month: r.month, revenue: r.revenue })),
-    ...data.forecast,
+    ...data.forecast.map((r) => ({ ...r, band: [r.lower, r.upper] })),
   ];
   return (
     <div
@@ -158,7 +162,16 @@ export function ForecastChart({ data }: { data: Analysis }) {
             }}
             formatter={(v) => money(Number(v), false)}
           />
+          <Area
+            isAnimationActive={false}
+            dataKey="band"
+            name="Exploratory residual band"
+            stroke="none"
+            fill="#e0b47d"
+            fillOpacity={0.15}
+          />
           <Line
+            isAnimationActive={false}
             dataKey="revenue"
             name="Historical revenue"
             stroke="#65c9bb"
@@ -166,6 +179,7 @@ export function ForecastChart({ data }: { data: Analysis }) {
             strokeWidth={2}
           />
           <Line
+            isAnimationActive={false}
             dataKey="forecast"
             name="Forecast"
             stroke="#e0b47d"
