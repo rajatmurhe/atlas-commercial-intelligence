@@ -1,6 +1,7 @@
 # Atlas: Commercial Intelligence & Evidence-Based Sales Analytics
 
 [![Verify application](https://img.shields.io/github/actions/workflow/status/rajatmurhe/atlas-commercial-intelligence/ci.yml?style=for-the-badge&label=CI)](https://github.com/rajatmurhe/atlas-commercial-intelligence/actions/workflows/ci.yml)
+![Gemini live planner](https://img.shields.io/badge/Gemini-Live%20verified-4285F4?style=for-the-badge&logo=googlegemini)
 ![Next.js & TypeScript](https://img.shields.io/badge/Next.js-TypeScript-111827?style=for-the-badge&logo=nextdotjs)
 ![Python & FastAPI](https://img.shields.io/badge/Python-FastAPI-009688?style=for-the-badge&logo=fastapi)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Star_Schema-4169E1?style=for-the-badge&logo=postgresql)
@@ -15,35 +16,36 @@ Built with **Next.js, TypeScript, FastAPI, PostgreSQL, and LangGraph**, the appl
 
 **All data is synthetic**, generated with a seeded Python script. Products and commercial outcomes are fictional. This independent portfolio project contains no patient, customer, or proprietary pharmaceutical data.
 
-[Two-minute walkthrough](docs/demo/README.md) · [Business brief](docs/business-brief.md) · [Measured findings](docs/findings.md) · [Evaluation evidence](evals/results-guided-evidence.json) · [Release status](docs/evidence/release-status.md) · [Deployment guide](infra/README.md)
+[Two-minute walkthrough](docs/demo/README.md) · [Business brief](docs/business-brief.md) · [Measured findings](docs/findings.md) · [Evaluation evidence](evals/results-guided-evidence.json) · [Live Gemini and Langfuse trace evidence](docs/evidence/gemini-langfuse-smoke.json) · [Release status](docs/evidence/release-status.md) · [Deployment guide](infra/README.md)
 
 ---
 
-## The workspace
+## Product screenshots
 
-### Portfolio overview
+Explore the workbench screens below. Select an image to open it at full resolution.
 
-Review revenue, year-over-year growth, target attainment, and product gaps within an explicit market and reporting period. The workbench helps commercial teams choose which exceptions deserve investigation.
-
-![Portfolio overview with KPI cards, revenue history and product performance](docs/screenshots/overview.png)
-
-### Conversational investigation
-
-Ask supported sales questions, follow up in the same conversation, inspect the generated SQL, and give feedback. Answers retain the reporting scope and show numerical evidence instead of presenting an unexplained recommendation.
-
-![Conversational investigation with numerical evidence and SQL disclosure](docs/screenshots/investigation.png)
-
-### Forecast and statistical evidence
-
-Compare the selected forecast with a seasonal naïve baseline, review a sales-drop screen, and inspect the synthetic promotion experiment. Evaluation windows and statistical limitations remain visible beside the results.
-
-![Forecast comparison, anomaly detection and promotion analysis](docs/screenshots/outlook.png)
-
-### Commercial review briefs
-
-Turn the selected market and period into a persisted draft containing revenue, attainment, the largest product gaps, and a proposed next check. Export Markdown for human review.
-
-![Saved commercial review brief](docs/screenshots/briefs.png)
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="docs/screenshots/overview.jpg"><img src="docs/screenshots/overview.jpg" alt="Atlas commercial performance dashboard with revenue, attainment, market performance and product contribution" width="100%"></a>
+      <strong>Portfolio overview</strong><br>Revenue, growth, target attainment, market performance, and product contribution in one review surface.
+    </td>
+    <td width="50%" valign="top">
+      <a href="docs/screenshots/investigation.jpg"><img src="docs/screenshots/investigation.jpg" alt="Commercial investigation with numerical evidence, product comparison, generated SQL, and feedback controls" width="100%"></a>
+      <strong>Conversational investigation</strong><br>Ask a sales question, inspect the supporting numbers and SQL, and provide feedback.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="docs/screenshots/outlook.jpg"><img src="docs/screenshots/outlook.jpg" alt="Forecast outlook with seasonal naive comparison, anomaly detection, and promotion analysis" width="100%"></a>
+      <strong>Forecast and statistical evidence</strong><br>Review baseline errors, sales-drop alerts, and the synthetic promotion experiment with limitations alongside results.
+    </td>
+    <td width="50%" valign="top">
+      <a href="docs/screenshots/briefs.jpg"><img src="docs/screenshots/briefs.jpg" alt="Saved commercial review brief with scoped performance metrics and suggested next checks" width="100%"></a>
+      <strong>Commercial review briefs</strong><br>Save a scoped performance summary with product gaps and a proposed next check for human review.
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -93,7 +95,7 @@ Execute through a restricted, read-only PostgreSQL role
 Select chart + compose numerical insight → persist run and feedback
 ```
 
-The live model extracts a **structured plan**; a deterministic compiler produces SQL. This bounds the query surface and preserves metric definitions. It is not unrestricted model-written SQL. The default guided mode runs without a paid model key; Gemini live mode has passed a real query smoke test; the full external evaluation is pending.
+The live model extracts a **structured plan**; a deterministic compiler produces SQL. This bounds the query surface and preserves metric definitions. It is not unrestricted model-written SQL. The default guided mode runs without a model key. Gemini Flash-Lite is also configured and verified with a real database-backed question; Langfuse contains the matching graph trace. The full live-model evaluation is still pending.
 
 ## Key capabilities
 
@@ -230,11 +232,11 @@ docs/              Business brief, findings, design decisions and evidence
 
 ## Verification and remaining release work
 
-**Verified:** 30 backend tests; 60 guided regression cases; production frontend build; HTTP checks for overview, investigations, feedback, saved briefs, analytics, authentication, origin rejection, and session isolation. BI totals reconcile with the API. Actual application screenshots are included above.
+**Verified:** 37 backend tests; 60 guided regression cases; production frontend build; HTTP checks for overview, investigations, feedback, saved briefs, analytics, authentication, origin rejection, and session isolation. BI totals reconcile with the API. Actual application screenshots are included above.
 
-**Live integration:** Gemini Flash-Lite returned a validated plan and database-backed answer. Langfuse authentication, SDK export, and matching remote trace read-back passed. See [smoke evidence](docs/evidence/gemini-langfuse-smoke.json).
+**Live integration:** Gemini Flash-Lite returned a validated plan and database-backed answer (192 input tokens, 40 output tokens in the recorded smoke run). Langfuse authentication passed and the matching graph trace was read back from the configured region. See [live smoke evidence](docs/evidence/gemini-langfuse-smoke.json).
 
-**Implemented, awaiting external verification:** full live-model prompt comparison and a Langfuse dashboard screenshot, GCP/Vercel/managed PostgreSQL deployment, and native Tableau rendering. The n8n schedule was verified with a successful automatic one-minute trigger using the same reporting node. The test is disabled and the Monday workflow is active; its next weekly firing is not yet observed. A two-minute narrated screenshot walkthrough is included; a live interaction recording remains pending.
+**Still to complete:** full live-model prompt comparison, a Langfuse dashboard screenshot, GCP/Vercel/managed PostgreSQL deployment, and native Tableau rendering. The n8n schedule was verified with a successful automatic one-minute trigger using the same reporting node. The test is disabled and the Monday workflow is active; its next weekly firing is not yet observed. A two-minute narrated screenshot walkthrough is included; a live interaction recording remains pending.
 
 The project is a working local portfolio application, not a completed hosted production release. See the [release evidence](docs/evidence/release-status.md) for exact verification boundaries.
 
@@ -244,5 +246,5 @@ The project is a working local portfolio application, not a completed hosted pro
 - Guided questions use a bounded vocabulary and four supported reporting periods; arbitrary filters and unrestricted SQL generation are not supported.
 - Territory aggregates do not justify individual rep-performance conclusions.
 - Promotion inference uses a small synthetic randomized experiment; forecast intervals are exploratory.
-- Cloud security, remote observability, native BI rendering, and live-model behavior require their own deployment validation.
+- Cloud deployment and identity, native Tableau rendering, and full live-model benchmark behavior require further validation. Langfuse tracing has been verified for a single live smoke run.
 - Review briefs propose checks for a human decision maker; they do not establish causes or prescribe commercial actions automatically.
