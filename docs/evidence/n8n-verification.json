@@ -7,5 +7,6 @@
   "schedule_active": false,
   "schedule_published": true,
   "scheduler_running": false,
-  "scheduler_note": "Restarted and inspected persisted workflow records: weekly and temporary minute schedule were published, but no trigger execution was recorded. Temporary minute test is being unpublished; scheduler is stopped. Manual report execution remains verified."
+  "scheduler_note": "Restarted and inspected persisted workflow records: weekly and temporary minute schedule were published, but no trigger execution was recorded. Temporary minute workflow was successfully unpublished using the n8n CLI. Scheduler is stopped. Manual report execution remains verified.",
+  "temporary_schedule_disabled": true
 }
