@@ -21,3 +21,5 @@ docker run -d --name atlas-n8n --restart unless-stopped \
 ```
 
 The machine and Docker must be running at the scheduled time. Stop with `docker stop atlas-n8n`. This local schedule writes to the isolated demo database, never sends messages, and does not constitute a hosted automation deployment.
+
+Local runtime status: schedule publication succeeded, but scheduler startup reported a database ping timeout under load. The scheduler was stopped. The manual execution is verified; unattended execution is not yet verified.

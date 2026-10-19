@@ -4,5 +4,8 @@
   "status": "success",
   "finished": true,
   "destination": "isolated Docker API and PostgreSQL",
-  "schedule_active": false
+  "schedule_active": false,
+  "schedule_published": true,
+  "scheduler_running": false,
+  "scheduler_note": "Scheduler startup hit a database ping timeout under local load and was stopped. Scheduled firing is not verified."
 }

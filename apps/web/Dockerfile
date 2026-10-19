@@ -1,7 +1,7 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --no-audit --no-fund --fetch-retries=1 --fetch-timeout=30000
 COPY . .
 RUN npm run build
 FROM node:22-alpine AS runtime
