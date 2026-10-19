@@ -1,0 +1,22 @@
+{
+  "rows": 24576,
+  "seed": 422804,
+  "as_of": "2026-09-30",
+  "start": "2022-10-01",
+  "months": 48,
+  "currency": "USD",
+  "synthetic": true,
+  "data_version": "seed-422804-v1-1bc1b098ff34",
+  "quality_checks": {
+    "no_nulls": true,
+    "target_ranges": true,
+    "target_coverage": true,
+    "unique_sales_grain": true,
+    "unique_target_grain": true,
+    "nonnegative_measures": true,
+    "complete_monthly_panel": true,
+    "rep_territory_integrity": true
+  },
+  "export_rows": 12288,
+  "source": "analytics.v_performance"
+}

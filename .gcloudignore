@@ -1,0 +1,7 @@
+.git
+.env*
+.venv
+.runtime
+apps
+artifacts
+**/__pycache__

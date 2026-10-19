@@ -1,0 +1,522 @@
+{
+  "forecast": {
+    "country": "All markets",
+    "history": [
+      {
+        "month": "2022-10-01",
+        "revenue": 4022696.0
+      },
+      {
+        "month": "2022-11-01",
+        "revenue": 3970423.83
+      },
+      {
+        "month": "2022-12-01",
+        "revenue": 4072478.57
+      },
+      {
+        "month": "2023-01-01",
+        "revenue": 4312091.44
+      },
+      {
+        "month": "2023-02-01",
+        "revenue": 4579227.69
+      },
+      {
+        "month": "2023-03-01",
+        "revenue": 4917121.6
+      },
+      {
+        "month": "2023-04-01",
+        "revenue": 5173397.97
+      },
+      {
+        "month": "2023-05-01",
+        "revenue": 5271698.37
+      },
+      {
+        "month": "2023-06-01",
+        "revenue": 5248560.95
+      },
+      {
+        "month": "2023-07-01",
+        "revenue": 5079159.77
+      },
+      {
+        "month": "2023-08-01",
+        "revenue": 4811465.76
+      },
+      {
+        "month": "2023-09-01",
+        "revenue": 4565985.2
+      },
+      {
+        "month": "2023-10-01",
+        "revenue": 4380128.47
+      },
+      {
+        "month": "2023-11-01",
+        "revenue": 4319565.01
+      },
+      {
+        "month": "2023-12-01",
+        "revenue": 4409844.42
+      },
+      {
+        "month": "2024-01-01",
+        "revenue": 4682513.41
+      },
+      {
+        "month": "2024-02-01",
+        "revenue": 5034294.66
+      },
+      {
+        "month": "2024-03-01",
+        "revenue": 5347585.62
+      },
+      {
+        "month": "2024-04-01",
+        "revenue": 5629170.09
+      },
+      {
+        "month": "2024-05-01",
+        "revenue": 5752720.07
+      },
+      {
+        "month": "2024-06-01",
+        "revenue": 5678638.9
+      },
+      {
+        "month": "2024-07-01",
+        "revenue": 5496765.87
+      },
+      {
+        "month": "2024-08-01",
+        "revenue": 5227625.52
+      },
+      {
+        "month": "2024-09-01",
+        "revenue": 4938874.79
+      },
+      {
+        "month": "2024-10-01",
+        "revenue": 4754287.39
+      },
+      {
+        "month": "2024-11-01",
+        "revenue": 4652046.11
+      },
+      {
+        "month": "2024-12-01",
+        "revenue": 4783031.35
+      },
+      {
+        "month": "2025-01-01",
+        "revenue": 5065747.93
+      },
+      {
+        "month": "2025-02-01",
+        "revenue": 5451368.23
+      },
+      {
+        "month": "2025-03-01",
+        "revenue": 5770033.11
+      },
+      {
+        "month": "2025-04-01",
+        "revenue": 6108206.85
+      },
+      {
+        "month": "2025-05-01",
+        "revenue": 6201771.05
+      },
+      {
+        "month": "2025-06-01",
+        "revenue": 6174550.72
+      },
+      {
+        "month": "2025-07-01",
+        "revenue": 5941282.0
+      },
+      {
+        "month": "2025-08-01",
+        "revenue": 5630522.58
+      },
+      {
+        "month": "2025-09-01",
+        "revenue": 5325698.71
+      },
+      {
+        "month": "2025-10-01",
+        "revenue": 5095828.15
+      },
+      {
+        "month": "2025-11-01",
+        "revenue": 5051093.55
+      },
+      {
+        "month": "2025-12-01",
+        "revenue": 5200118.34
+      },
+      {
+        "month": "2026-01-01",
+        "revenue": 5503016.25
+      },
+      {
+        "month": "2026-02-01",
+        "revenue": 5832495.9
+      },
+      {
+        "month": "2026-03-01",
+        "revenue": 6236007.71
+      },
+      {
+        "month": "2026-04-01",
+        "revenue": 6512692.11
+      },
+      {
+        "month": "2026-05-01",
+        "revenue": 6658423.58
+      },
+      {
+        "month": "2026-06-01",
+        "revenue": 6620383.17
+      },
+      {
+        "month": "2026-07-01",
+        "revenue": 6126228.47
+      },
+      {
+        "month": "2026-08-01",
+        "revenue": 5801136.66
+      },
+      {
+        "month": "2026-09-01",
+        "revenue": 5459278.65
+      }
+    ],
+    "forecast": [
+      {
+        "month": "2026-10-01",
+        "forecast": 5233337.96,
+        "lower": 5161993.12,
+        "upper": 5304682.8
+      },
+      {
+        "month": "2026-11-01",
+        "forecast": 5158922.31,
+        "lower": 5087577.48,
+        "upper": 5230267.15
+      },
+      {
+        "month": "2026-12-01",
+        "forecast": 5262197.71,
+        "lower": 5190852.87,
+        "upper": 5333542.55
+      }
+    ],
+    "selected_model": "ets",
+    "validation": {
+      "seasonal_naive": {
+        "mape": 7.465971241897797,
+        "wape": 7.467405940182877,
+        "mae": 425023.5374999999,
+        "zero_actuals": 0
+      },
+      "ets": {
+        "mape": 0.7715730329525025,
+        "wape": 0.7772455322814685,
+        "mae": 44238.60819708564,
+        "zero_actuals": 0
+      }
+    },
+    "test": {
+      "seasonal_naive": {
+        "mape": 4.701674488034696,
+        "wape": 4.831093224295622,
+        "mae": 299351.78833333356,
+        "zero_actuals": 0
+      },
+      "ets": {
+        "mape": 1.2478636068136413,
+        "wape": 1.224552534354848,
+        "mae": 75877.6479873634,
+        "zero_actuals": 0
+      }
+    },
+    "test_period": "April\u2013September 2026",
+    "method": "Expanding-window one-month-ahead evaluation. Model selected on October 2025\u2013March 2026 validation by MAE, then tested on six unseen months. Three-month future projections are exploratory.",
+    "interval_note": "The shaded band uses validation absolute residuals; it is not a calibrated multi-horizon prediction interval.",
+    "anomaly": {
+      "month": "2026-09-01",
+      "robust_score": -4.898770109821787,
+      "flagged": true,
+      "method": "Latest year-over-year revenue difference compared with historical differences using median and MAD; threshold \u22123. No causal attribution."
+    }
+  },
+  "kuwait_forecast": {
+    "country": "Kuwait",
+    "history": [
+      {
+        "month": "2022-10-01",
+        "revenue": 906843.0
+      },
+      {
+        "month": "2022-11-01",
+        "revenue": 885849.93
+      },
+      {
+        "month": "2022-12-01",
+        "revenue": 909528.06
+      },
+      {
+        "month": "2023-01-01",
+        "revenue": 968743.1
+      },
+      {
+        "month": "2023-02-01",
+        "revenue": 1033438.34
+      },
+      {
+        "month": "2023-03-01",
+        "revenue": 1100695.71
+      },
+      {
+        "month": "2023-04-01",
+        "revenue": 1163612.18
+      },
+      {
+        "month": "2023-05-01",
+        "revenue": 1182569.81
+      },
+      {
+        "month": "2023-06-01",
+        "revenue": 1167830.68
+      },
+      {
+        "month": "2023-07-01",
+        "revenue": 1133447.4
+      },
+      {
+        "month": "2023-08-01",
+        "revenue": 1080188.65
+      },
+      {
+        "month": "2023-09-01",
+        "revenue": 1017528.1
+      },
+      {
+        "month": "2023-10-01",
+        "revenue": 977970.62
+      },
+      {
+        "month": "2023-11-01",
+        "revenue": 966879.65
+      },
+      {
+        "month": "2023-12-01",
+        "revenue": 978632.65
+      },
+      {
+        "month": "2024-01-01",
+        "revenue": 1052078.39
+      },
+      {
+        "month": "2024-02-01",
+        "revenue": 1132699.8
+      },
+      {
+        "month": "2024-03-01",
+        "revenue": 1203217.3
+      },
+      {
+        "month": "2024-04-01",
+        "revenue": 1247822.12
+      },
+      {
+        "month": "2024-05-01",
+        "revenue": 1273883.75
+      },
+      {
+        "month": "2024-06-01",
+        "revenue": 1278420.82
+      },
+      {
+        "month": "2024-07-01",
+        "revenue": 1229853.04
+      },
+      {
+        "month": "2024-08-01",
+        "revenue": 1160980.6
+      },
+      {
+        "month": "2024-09-01",
+        "revenue": 1112382.33
+      },
+      {
+        "month": "2024-10-01",
+        "revenue": 1061003.0
+      },
+      {
+        "month": "2024-11-01",
+        "revenue": 1036972.46
+      },
+      {
+        "month": "2024-12-01",
+        "revenue": 1068680.82
+      },
+      {
+        "month": "2025-01-01",
+        "revenue": 1135389.31
+      },
+      {
+        "month": "2025-02-01",
+        "revenue": 1229789.96
+      },
+      {
+        "month": "2025-03-01",
+        "revenue": 1284824.45
+      },
+      {
+        "month": "2025-04-01",
+        "revenue": 1366402.1
+      },
+      {
+        "month": "2025-05-01",
+        "revenue": 1370796.89
+      },
+      {
+        "month": "2025-06-01",
+        "revenue": 1376612.64
+      },
+      {
+        "month": "2025-07-01",
+        "revenue": 1327069.0
+      },
+      {
+        "month": "2025-08-01",
+        "revenue": 1263531.87
+      },
+      {
+        "month": "2025-09-01",
+        "revenue": 1190223.58
+      },
+      {
+        "month": "2025-10-01",
+        "revenue": 1136177.21
+      },
+      {
+        "month": "2025-11-01",
+        "revenue": 1120806.65
+      },
+      {
+        "month": "2025-12-01",
+        "revenue": 1150877.87
+      },
+      {
+        "month": "2026-01-01",
+        "revenue": 1231698.27
+      },
+      {
+        "month": "2026-02-01",
+        "revenue": 1304507.4
+      },
+      {
+        "month": "2026-03-01",
+        "revenue": 1403183.35
+      },
+      {
+        "month": "2026-04-01",
+        "revenue": 1455860.08
+      },
+      {
+        "month": "2026-05-01",
+        "revenue": 1482481.8
+      },
+      {
+        "month": "2026-06-01",
+        "revenue": 1471110.95
+      },
+      {
+        "month": "2026-07-01",
+        "revenue": 1148837.6
+      },
+      {
+        "month": "2026-08-01",
+        "revenue": 1087296.23
+      },
+      {
+        "month": "2026-09-01",
+        "revenue": 1044386.07
+      }
+    ],
+    "forecast": [
+      {
+        "month": "2026-10-01",
+        "forecast": 985124.9,
+        "lower": 961441.97,
+        "upper": 1008807.84
+      },
+      {
+        "month": "2026-11-01",
+        "forecast": 960925.03,
+        "lower": 937242.1,
+        "upper": 984607.97
+      },
+      {
+        "month": "2026-12-01",
+        "forecast": 981114.99,
+        "lower": 957432.06,
+        "upper": 1004797.93
+      }
+    ],
+    "selected_model": "ets",
+    "validation": {
+      "seasonal_naive": {
+        "mape": 7.340256164148519,
+        "wape": 7.360533394014182,
+        "mae": 93490.34749999997,
+        "zero_actuals": 0
+      },
+      "ets": {
+        "mape": 1.139393529082101,
+        "wape": 1.1475272381885548,
+        "mae": 14575.40024901034,
+        "zero_actuals": 0
+      }
+    },
+    "test": {
+      "seasonal_naive": {
+        "mape": 10.964758732446407,
+        "wape": 10.350436574304995,
+        "mae": 132657.62500000006,
+        "zero_actuals": 0
+      },
+      "ets": {
+        "mape": 7.930299805613615,
+        "wape": 6.983591546302323,
+        "mae": 89506.04758087233,
+        "zero_actuals": 0
+      }
+    },
+    "test_period": "April\u2013September 2026",
+    "method": "Expanding-window one-month-ahead evaluation. Model selected on October 2025\u2013March 2026 validation by MAE, then tested on six unseen months. Three-month future projections are exploratory.",
+    "interval_note": "The shaded band uses validation absolute residuals; it is not a calibrated multi-horizon prediction interval.",
+    "anomaly": {
+      "month": "2026-09-01",
+      "robust_score": -18.830059081176604,
+      "flagged": true,
+      "method": "Latest year-over-year revenue difference compared with historical differences using median and MAD; threshold \u22123. No causal attribution."
+    }
+  },
+  "promotion": {
+    "effect_pp": 17.465366264835154,
+    "p_value": 0.0001554001554001554,
+    "ci_low_pp": 14.216869476915495,
+    "ci_high_pp": 20.713863052754817,
+    "treated_territories": 8,
+    "control_territories": 8,
+    "method": "Difference in pre/post revenue growth, territory as the randomized unit; exact two-sided randomization test. Approximate 95% Welch interval.",
+    "limitation": "A deliberately randomized synthetic experiment with 16 territories. This is a method demonstration, not evidence of real-world effectiveness."
+  }
+}

@@ -1,0 +1,42 @@
+name: Verify application
+on: [push, pull_request]
+permissions:
+  contents: read
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - name: Install PostgreSQL binaries
+        run: sudo apt-get update && sudo apt-get install -y postgresql-16
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -r services/api/requirements.txt
+          npm ci --prefix apps/web
+      - name: Seed isolated database
+        env:
+          POSTGRES_BIN: /usr/lib/postgresql/16/bin
+        run: .venv/bin/python scripts/bootstrap.py
+      - name: Security and data tests
+        run: .venv/bin/pytest -q
+      - name: Guided benchmark
+        run: .venv/bin/python evals/run.py
+      - name: Production build
+        run: npm run build --prefix apps/web
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guided-evaluation
+          path: evals/results-guided-evidence.json

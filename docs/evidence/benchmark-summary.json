@@ -1,0 +1,25 @@
+{
+  "mode": "guided",
+  "data_version": "seed-422804-v1-1bc1b098ff34",
+  "cases": 60,
+  "passed": 60,
+  "accuracy": 1.0,
+  "median_latency_ms": 638,
+  "p95_latency_ms": 1347,
+  "note": "Regression benchmark, not a frozen held-out natural-language benchmark. Checks status, scope, intent, SQL validity, revenue, target, gap, attainment and prior-year revenue. Multi-turn latency/tokens include setup. Cost excludes infrastructure; provider failures may incur unobserved usage.",
+  "sql_validity": 1.0,
+  "variant": "evidence",
+  "model": null,
+  "benchmark_sha256": "5ac7f7d98719ca7807b8260352915cd8b66f70c2902f8a8200aa1ce9f8a3fbdf",
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "estimated_cost_usd": null,
+  "price_basis": {
+    "input_usd_per_million": null,
+    "output_usd_per_million": null
+  },
+  "answerable_accuracy": 1.0,
+  "refusal_recall": 1.0,
+  "refusal_precision": 1.0,
+  "clarification_accuracy": 1.0
+}

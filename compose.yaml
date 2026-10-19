@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ciq
+      POSTGRES_USER: ciq_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run scripts/compose_env.py first}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U ciq_admin -d ciq']
+      interval: 5s
+      retries: 20
+  redis:
+    image: redis:7-alpine
+    command: [redis-server, --maxmemory, 64mb, --maxmemory-policy, allkeys-lru]
+  init:
+    build: .
+    command: [python, scripts/init_database.py]
+    environment: &db-settings
+      ADMIN_DATABASE_URL: postgresql://ciq_admin:${POSTGRES_PASSWORD}@postgres:5432/ciq
+      DATABASE_URL: postgresql://ciq_app:${APP_PASSWORD}@postgres:5432/ciq
+      QUERY_DATABASE_URL: postgresql://ciq_reader:${READER_PASSWORD}@postgres:5432/ciq
+      API_KEY: ${API_KEY}
+    depends_on:
+      postgres:
+        condition: service_healthy
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://ciq_app:${APP_PASSWORD}@postgres:5432/ciq
+      QUERY_DATABASE_URL: postgresql://ciq_reader:${READER_PASSWORD}@postgres:5432/ciq
+      API_KEY: ${API_KEY}
+      REDIS_URL: redis://redis:6379/0
+      AGENT_MODE: guided
+    depends_on:
+      init:
+        condition: service_completed_successfully
+  web:
+    build: apps/web
+    environment:
+      BACKEND_URL: http://api:8080
+      API_KEY: ${API_KEY}
+      APP_ORIGIN: http://localhost:3032
+    ports: ['127.0.0.1:3032:3000']
+    depends_on: [api]
+volumes:
+  postgres-data:

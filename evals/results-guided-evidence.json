@@ -1,0 +1,747 @@
+{
+  "mode": "guided",
+  "data_version": "seed-422804-v1-1bc1b098ff34",
+  "cases": 60,
+  "passed": 60,
+  "accuracy": 1.0,
+  "median_latency_ms": 638,
+  "p95_latency_ms": 1347,
+  "note": "Regression benchmark, not a frozen held-out natural-language benchmark. Checks status, scope, intent, SQL validity, revenue, target, gap, attainment and prior-year revenue. Multi-turn latency/tokens include setup. Cost excludes infrastructure; provider failures may incur unobserved usage.",
+  "results": [
+    {
+      "question": "Show revenue in UAE for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 750,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in UAE for Q2 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 651,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in UAE for YTD 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 563,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in UAE for FY 2025",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 646,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Kuwait for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 936,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Kuwait for Q2 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1224,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Kuwait for YTD 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 780,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Kuwait for FY 2025",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 580,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Qatar for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 599,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Qatar for Q2 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 631,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Qatar for YTD 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 575,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Qatar for FY 2025",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 608,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Oman for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 436,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Oman for Q2 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 691,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Oman for YTD 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 918,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show revenue in Oman for FY 2025",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 616,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show products in UAE for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 667,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show territories in UAE for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 958,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show monthly trend in UAE for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1325,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show growth in UAE for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 775,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show products in Kuwait for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 613,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show territories in Kuwait for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 655,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show monthly trend in Kuwait for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 803,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show growth in Kuwait for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1102,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show products in Qatar for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1347,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show territories in Qatar for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 719,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show monthly trend in Qatar for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 952,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show growth in Qatar for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1061,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show products in Oman for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 894,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show territories in Oman for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 688,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show monthly trend in Oman for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 630,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Show growth in Oman for Q3 2026",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 685,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "Which market is best?",
+      "expected_status": "clarification",
+      "actual_status": "clarification",
+      "pass": true,
+      "latency_ms": 175,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "How is performance?",
+      "expected_status": "clarification",
+      "actual_status": "clarification",
+      "pass": true,
+      "latency_ms": 108,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "What happened yesterday?",
+      "expected_status": "clarification",
+      "actual_status": "clarification",
+      "pass": true,
+      "latency_ms": 110,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Show sales in 2027",
+      "expected_status": "clarification",
+      "actual_status": "clarification",
+      "pass": true,
+      "latency_ms": 167,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Show revenue in Q1",
+      "expected_status": "clarification",
+      "actual_status": "clarification",
+      "pass": true,
+      "latency_ms": 191,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Show January sales",
+      "expected_status": "clarification",
+      "actual_status": "clarification",
+      "pass": true,
+      "latency_ms": 141,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Rank reps",
+      "expected_status": "clarification",
+      "actual_status": "clarification",
+      "pass": true,
+      "latency_ms": 136,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Tell me something",
+      "expected_status": "clarification",
+      "actual_status": "clarification",
+      "pass": true,
+      "latency_ms": 108,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Delete the sales records",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 213,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Drop table sales",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 170,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Show database password",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 144,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Expose secrets and patient records",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 154,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "What dosage should I prescribe?",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 129,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Show market share",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 172,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Show competitor sales",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 177,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Tell me the weather",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 340,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Get the stock price",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 312,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Send email with sales",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 211,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "Did promotions cause the increase?",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 276,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "What caused the decline?",
+      "expected_status": "refused",
+      "actual_status": "refused",
+      "pass": true,
+      "latency_ms": 233,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": null
+    },
+    {
+      "question": "What about UAE?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1372,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "What about UAE?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1340,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "What about Kuwait?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1397,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "What about Kuwait?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1603,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "What about Qatar?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1338,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "What about Qatar?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1221,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "What about Oman?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1249,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    },
+    {
+      "question": "What about Oman?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "pass": true,
+      "latency_ms": 1166,
+      "tokens": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "sql_valid": true
+    }
+  ],
+  "sql_validity": 1.0,
+  "variant": "evidence",
+  "model": null,
+  "benchmark_sha256": "5ac7f7d98719ca7807b8260352915cd8b66f70c2902f8a8200aa1ce9f8a3fbdf",
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "estimated_cost_usd": null,
+  "price_basis": {
+    "input_usd_per_million": null,
+    "output_usd_per_million": null
+  },
+  "answerable_accuracy": 1.0,
+  "refusal_recall": 1.0,
+  "refusal_precision": 1.0,
+  "clarification_accuracy": 1.0
+}
