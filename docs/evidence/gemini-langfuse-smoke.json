@@ -1,0 +1,15 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "run_id": "fb8376fc-eadb-4e95-9f4b-257bc1f4b3ba",
+  "status": "answered",
+  "scope": {
+    "country": "Kuwait",
+    "period": "Q3 2026"
+  },
+  "usage": {
+    "input_tokens": 192,
+    "output_tokens": 40
+  },
+  "remote_trace_verified": true,
+  "verified_at": "2026-10-19T16:08:05.621323+00:00"
+}

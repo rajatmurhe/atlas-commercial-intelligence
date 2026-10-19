@@ -1,0 +1,6 @@
+# Optional local live-AI overlay. Secrets stay in the ignored .env file.
+services:
+  api:
+    env_file: .env
+    environment:
+      AGENT_MODE: live

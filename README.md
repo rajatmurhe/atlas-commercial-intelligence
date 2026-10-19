@@ -93,7 +93,7 @@ Execute through a restricted, read-only PostgreSQL role
 Select chart + compose numerical insight → persist run and feedback
 ```
 
-The live model extracts a **structured plan**; a deterministic compiler produces SQL. This bounds the query surface and preserves metric definitions. It is not unrestricted model-written SQL. The default guided mode runs without a paid model key; live mode is implemented but its external evaluation is pending.
+The live model extracts a **structured plan**; a deterministic compiler produces SQL. This bounds the query surface and preserves metric definitions. It is not unrestricted model-written SQL. The default guided mode runs without a paid model key; Gemini live mode has passed a real query smoke test; the full external evaluation is pending.
 
 ## Key capabilities
 
@@ -156,7 +156,7 @@ The live comparison runner requires fresh outputs, records all failed cases and 
 |---|---|
 | Frontend | Next.js, React, TypeScript, Recharts, Lucide |
 | Backend | Python, FastAPI, Pydantic, Psycopg |
-| Agent | LangGraph, structured OpenAI planner, SQLGlot, MCP |
+| Agent | LangGraph, structured Gemini/OpenAI planner, SQLGlot, MCP |
 | Data | PostgreSQL, seeded Python ETL, shared analytical views |
 | Analytics | Seasonal naïve baseline, ETS, robust anomaly scoring, permutation testing |
 | Operations | Redis, Docker Compose, GitHub Actions, n8n |
@@ -203,7 +203,7 @@ npm run build --prefix apps/web
 
 ### Enable optional integrations
 
-Set `AGENT_MODE=live`, `OPENAI_API_KEY`, and an explicit `OPENAI_MODEL` in your local environment, then restart. `PROMPT_VARIANT=baseline|evidence` selects the planning prompt. Configure Langfuse credentials for remote graph traces. Never commit credentials.
+For Gemini free-tier access, set `AGENT_MODE=live`, `LLM_PROVIDER=gemini`, `GEMINI_API_KEY`, and `GEMINI_MODEL=gemini-3.5-flash-lite` in your ignored `.env`, then restart. Free quotas apply; keep billing disabled for a zero-budget demo. Alternatively use `LLM_PROVIDER=openai`, `OPENAI_API_KEY`, and an explicit `OPENAI_MODEL` (separately billed). For Docker, run `docker compose --env-file .env.compose -f compose.yaml -f compose.live.yaml up -d --build --no-deps api`. `PROMPT_VARIANT=baseline|evidence` selects the planning prompt. Configure Langfuse credentials for remote graph traces. Never commit credentials.
 
 ```bash
 # Compare live prompts after configuring credentials/model
@@ -232,7 +232,9 @@ docs/              Business brief, findings, design decisions and evidence
 
 **Verified:** 30 backend tests; 60 guided regression cases; production frontend build; HTTP checks for overview, investigations, feedback, saved briefs, analytics, authentication, origin rejection, and session isolation. BI totals reconcile with the API. Actual application screenshots are included above.
 
-**Implemented, awaiting external verification:** live-model prompt comparison and Langfuse traces, GCP/Vercel/managed PostgreSQL deployment, and native Tableau rendering. The n8n schedule was verified with a successful automatic one-minute trigger using the same reporting node. The test is disabled and the Monday workflow is active; its next weekly firing is not yet observed. A two-minute narrated screenshot walkthrough is included; a live interaction recording remains pending.
+**Live integration:** Gemini Flash-Lite returned a validated plan and database-backed answer. Langfuse authentication, SDK export, and matching remote trace read-back passed. See [smoke evidence](docs/evidence/gemini-langfuse-smoke.json).
+
+**Implemented, awaiting external verification:** full live-model prompt comparison and a Langfuse dashboard screenshot, GCP/Vercel/managed PostgreSQL deployment, and native Tableau rendering. The n8n schedule was verified with a successful automatic one-minute trigger using the same reporting node. The test is disabled and the Monday workflow is active; its next weekly firing is not yet observed. A two-minute narrated screenshot walkthrough is included; a live interaction recording remains pending.
 
 The project is a working local portfolio application, not a completed hosted production release. See the [release evidence](docs/evidence/release-status.md) for exact verification boundaries.
 

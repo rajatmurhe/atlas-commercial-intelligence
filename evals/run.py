@@ -113,11 +113,11 @@ def oracle(data, case):
         return (
             products[row[1]]
             if intent == "products"
-            else region[row[2]][1]
-            if intent == "territories"
-            else str(row[0])
-            if intent == "trend"
-            else "total"
+            else (
+                region[row[2]][1]
+                if intent == "territories"
+                else str(row[0]) if intent == "trend" else "total"
+            )
         )
 
     for row in data["sales"]:
@@ -164,9 +164,15 @@ def main():
     cfg = settings()
     cfg.agent_mode = args.mode
     cfg.prompt_variant = args.variant
-    if args.mode == "live" and (not cfg.openai_api_key or not cfg.openai_model):
+    if args.mode == "live" and (
+        (cfg.llm_provider == "gemini" and not cfg.gemini_api_key)
+        or (
+            cfg.llm_provider == "openai"
+            and (not cfg.openai_api_key or not cfg.openai_model)
+        )
+    ):
         raise SystemExit(
-            "Live evaluation requires OPENAI_API_KEY and OPENAI_MODEL. No calls made."
+            "Live evaluation requires credentials for the selected LLM_PROVIDER. No calls made."
         )
     data = generate()
     results = []
@@ -259,7 +265,12 @@ def main():
         else None
     )
     output["variant"] = args.variant
-    output["model"] = cfg.openai_model if args.mode == "live" else None
+    output["model"] = (
+        (cfg.gemini_model if cfg.llm_provider == "gemini" else cfg.openai_model)
+        if args.mode == "live"
+        else None
+    )
+    output["provider"] = cfg.llm_provider if args.mode == "live" else None
     output["benchmark_sha256"] = hashlib.sha256(
         json.dumps(cases(), sort_keys=True).encode()
     ).hexdigest()

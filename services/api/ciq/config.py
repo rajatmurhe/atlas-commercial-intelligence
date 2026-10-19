@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     api_key: str
     redis_url: str = ""
     agent_mode: str = "guided"
+    llm_provider: str = "openai"
+    gemini_api_key: str = ""
+    gemini_model: str = "gemini-3.5-flash-lite"
     openai_api_key: str = ""
     openai_model: str = ""
     prompt_variant: str = "evidence"
