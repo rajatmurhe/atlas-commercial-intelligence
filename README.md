@@ -232,7 +232,7 @@ docs/              Business brief, findings, design decisions and evidence
 
 **Verified:** 30 backend tests; 60 guided regression cases; production frontend build; HTTP checks for overview, investigations, feedback, saved briefs, analytics, authentication, origin rejection, and session isolation. BI totals reconcile with the API. Actual application screenshots are included above.
 
-**Implemented, awaiting external verification:** live-model prompt comparison and Langfuse traces, GCP/Vercel/managed PostgreSQL deployment, and native Tableau rendering. The n8n report node has executed successfully and the weekly schedule is published; unattended execution is not yet verified. A two-minute narrated screenshot walkthrough is included; a live interaction recording remains pending.
+**Implemented, awaiting external verification:** live-model prompt comparison and Langfuse traces, GCP/Vercel/managed PostgreSQL deployment, and native Tableau rendering. The n8n schedule was verified with a successful automatic one-minute trigger using the same reporting node. The test is disabled and the Monday workflow is active; its next weekly firing is not yet observed. A two-minute narrated screenshot walkthrough is included; a live interaction recording remains pending.
 
 The project is a working local portfolio application, not a completed hosted production release. See the [release evidence](docs/evidence/release-status.md) for exact verification boundaries.
 

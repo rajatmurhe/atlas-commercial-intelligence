@@ -1,12 +1,19 @@
 {
   "engine": "n8n 2.41.6",
-  "trigger": "manual CLI test of weekly-report HTTP node",
-  "status": "success",
-  "finished": true,
-  "destination": "isolated Docker API and PostgreSQL",
-  "schedule_active": false,
-  "schedule_published": true,
-  "scheduler_running": false,
-  "scheduler_note": "Restarted and inspected persisted workflow records: weekly and temporary minute schedule were published, but no trigger execution was recorded. Temporary minute workflow was successfully unpublished using the n8n CLI. Scheduler is stopped. Manual report execution remains verified.",
-  "temporary_schedule_disabled": true
+  "manual_execution": "success",
+  "scheduled_smoke_execution": {
+    "id": 2,
+    "status": "success",
+    "mode": "trigger",
+    "workflowId": "atlasScheduleSmoke",
+    "startedAt": "2026-10-19 15:13:00.222",
+    "stoppedAt": "2026-10-19 15:13:00.613"
+  },
+  "schedule_test": "Same report node and credentials, temporary one-minute cron; actual Monday firing not yet observed",
+  "weekly_schedule": "Monday 08:00 Asia/Dubai",
+  "weekly_schedule_published": true,
+  "temporary_schedule_disabled": true,
+  "scheduler_running": true,
+  "activation_fix": "N8N_USE_WORKFLOW_PUBLICATION_SERVICE=false for CLI-published workflows in the pinned n8n build",
+  "destination": "isolated Docker API and PostgreSQL"
 }

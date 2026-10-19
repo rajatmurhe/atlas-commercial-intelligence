@@ -1,0 +1,25 @@
+{
+  "package_rows": 12288,
+  "worksheets": 6,
+  "checks": [
+    {
+      "country": "All markets",
+      "period": "Q3 2026",
+      "rows": 768,
+      "status": "reconciled"
+    },
+    {
+      "country": "Kuwait",
+      "period": "YTD 2026",
+      "rows": 576,
+      "status": "reconciled"
+    },
+    {
+      "country": "Qatar",
+      "period": "FY 2025",
+      "rows": 768,
+      "status": "reconciled"
+    }
+  ],
+  "native_tableau_rendering": "not verified"
+}

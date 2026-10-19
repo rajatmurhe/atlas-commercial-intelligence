@@ -13,13 +13,17 @@ Start the Docker Compose stack, then run `.venv/bin/python scripts/setup_n8n.py`
 Start the scheduler (no public port is needed):
 
 ```bash
-docker run -d --name atlas-n8n --restart unless-stopped \
+docker run -d --name atlas-scheduler --restart unless-stopped \
   --network atlas-commercial-intelligence_default \
   -v atlas-n8n-data:/home/node/.n8n \
   -e GENERIC_TIMEZONE=Asia/Dubai \
+  -e N8N_USE_WORKFLOW_PUBLICATION_SERVICE=false \
+  -e N8N_DIAGNOSTICS_ENABLED=false \
   n8nio/n8n@sha256:87e0bab2c93192e8dd885ff7b0697c22a1bd97489568a8c67cc140fd7dbb342d
 ```
 
-The machine and Docker must be running at the scheduled time. Stop with `docker stop atlas-n8n`. This local schedule writes to the isolated demo database, never sends messages, and does not constitute a hosted automation deployment.
+The machine and Docker must be running at the scheduled time. Stop with `docker stop atlas-scheduler`. This local schedule writes to the isolated demo database, never sends messages, and does not constitute a hosted automation deployment.
 
-Local runtime status: manual report execution is verified. A published one-minute test did not produce a recorded scheduled execution after restart. The temporary test is disabled and the scheduler is stopped; unattended automation remains a release blocker.
+Local runtime status: **automatic triggering is verified**. The temporary one-minute schedule completed successfully in trigger mode on 19 October 2026 and the API returned HTTP 200. The test workflow is now unpublished. The Monday workflow remains active in `atlas-scheduler`; its next Monday firing has not yet been observed.
+
+The pinned n8n version defaults to a newer workflow publication service that did not activate these CLI-published records. Setting `N8N_USE_WORKFLOW_PUBLICATION_SERVICE=false` uses its alternate activation path; startup logs then confirm activation. This compatibility setting is scoped to this pinned local deployment and should be revalidated on upgrade. Do not start the old `atlas-n8n` container alongside `atlas-scheduler`: both use the same SQLite volume.

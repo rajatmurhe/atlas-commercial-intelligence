@@ -20,3 +20,5 @@ Use the same country and date filters as the web dashboard to reconcile totals. 
 `atlas-commercial-review.twbx` now packages six worksheets, a dashboard layout, and the complete CSV. Regenerate it with `scripts/build_tableau.py`. XML structure and package contents are checked. Tableau is not installed here, so native rendering, filter interaction, formatting and a dashboard screenshot remain unverified; do not treat this as a finished BI deliverable yet.
 
 The verified export has 12,288 rows; Q3 2026 revenue and target totals reconcile with the API.
+
+Run `.venv/bin/python scripts/verify_bi.py` to reconcile the CSV inside the TWBX against database totals for all-market Q3, Kuwait YTD and Qatar FY scopes. It checks revenue, target, gap and aggregate attainment. The same check runs in CI. This verifies numerical consistency, not Tableau rendering.
