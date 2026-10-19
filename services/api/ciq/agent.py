@@ -47,6 +47,31 @@ class State(TypedDict, total=False):
     usage: dict
 
 
+def unsupported_scope(question: str) -> str | None:
+    """Reject unsupported filters before either planner can silently omit them."""
+    q = question.lower()
+    if re.search(
+        r"\b(oncora|velora|immunex|vaxora|cardeva|glycera|respira|aerion|oncology|vaccines?|cardio|cardiometabolic|respiratory|hospital|institutional|retail)\b",
+        q,
+    ):
+        return "This release cannot filter an investigation by named product, therapy area, or channel. Would you like a product comparison for one supported market and period?"
+    if re.search(r"\b(saudi|ksa|bahrain|dubai|abu dhabi|riyadh)\b", q):
+        return "Choose a supported country scope: UAE, Kuwait, Qatar, Oman, or all markets. City and other-country filters are not supported."
+    countries = set(re.findall(r"\b(uae|kuwait|qatar|oman)\b", q))
+    if len(countries) > 1:
+        return "Choose one country, or ask to compare all markets. A custom selection of multiple countries is not supported."
+    years = set(re.findall(r"\b(?:19|20)\d{2}\b", q))
+    if years - {"2025", "2026"} or len(years) > 1:
+        return "Choose one supported reporting period: Q3 2026, Q2 2026, YTD 2026, or FY 2025."
+    if ("2025" in years and re.search(r"\b(q[1-4]|ytd)\b", q)) or re.search(
+        r"\b(fy\s*2026|q[14]|last quarter|last week|this month|next year)\b", q
+    ):
+        return "Choose Q3 2026, Q2 2026, YTD 2026, or FY 2025; the requested period is not supported."
+    if "q2" in q and "q3" in q:
+        return "Choose one reporting period at a time. Quarter-to-quarter comparisons are not supported in this release."
+    return None
+
+
 def guided_plan(question: str, context: dict) -> Plan:
     q = question.lower().strip()
     scope = Scope(**{k: v for k, v in context.items() if k in ("country", "period")})
@@ -93,6 +118,9 @@ def guided_plan(question: str, context: dict) -> Plan:
             "refuse",
             "These sales aggregates cannot establish a causal effect. Use the separate randomized simulation analysis for the promotion experiment.",
         )
+    scope_message = unsupported_scope(question)
+    if scope_message:
+        return result("clarify", scope_message)
     if re.search(
         r"\b(202[0-4]|2027|q1|q4|october|november|december|january|february|march|april|may|june|july|august|september|today|yesterday|last month)\b",
         q,
@@ -164,6 +192,14 @@ def guided_plan(question: str, context: dict) -> Plan:
 
 def classify(state: State):
     cfg = settings()
+    scope_message = unsupported_scope(state["question"])
+    if scope_message:
+        plan = guided_plan(state["question"], state["context"])
+        return {
+            "plan": plan.model_dump(),
+            "usage": {"input_tokens": 0, "output_tokens": 0},
+            "steps": ["Clarify unsupported reporting scope"],
+        }
     if cfg.agent_mode == "live":
         if not cfg.openai_api_key or not cfg.openai_model:
             raise RuntimeError("Live mode requires OPENAI_API_KEY and OPENAI_MODEL.")
@@ -265,11 +301,11 @@ def compose(state: State):
             "text": text,
             "next_check": "Review the largest negative gaps with the territory team. Check order timing and operational context before assigning a cause.",
             "limitation": "Synthetic sales describe contributions, not causal explanations. Currency: reporting USD.",
-            "chart": "line"
-            if intent == "trend"
-            else "bar"
-            if intent not in ("summary", "growth")
-            else "table",
+            "chart": (
+                "line"
+                if intent == "trend"
+                else "bar" if intent not in ("summary", "growth") else "table"
+            ),
         },
         "steps": state["steps"]
         + ["Compose numerical claims directly from query results"],
@@ -281,9 +317,11 @@ def decline(state: State):
     return {
         "answer": {
             "status": "clarification" if plan["intent"] == "clarify" else "refused",
-            "title": "Let’s make the question precise"
-            if plan["intent"] == "clarify"
-            else "Outside the supported scope",
+            "title": (
+                "Let’s make the question precise"
+                if plan["intent"] == "clarify"
+                else "Outside the supported scope"
+            ),
             "text": plan["message"],
             "chart": "none",
         },

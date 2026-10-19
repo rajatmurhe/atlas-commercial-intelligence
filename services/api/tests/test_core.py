@@ -137,3 +137,32 @@ def test_global_budget_is_shared_between_sessions(monkeypatch):
     with pytest.raises(HTTPException) as exc:
         reserve_question(str(uuid.uuid4()))
     assert exc.value.status_code == 429
+
+
+@pytest.mark.parametrize(
+    "question",
+    [
+        "Show revenue for Oncora",
+        "What were oncology sales?",
+        "Show hospital revenue",
+        "Show sales in Saudi Arabia",
+        "Compare UAE and Kuwait revenue",
+        "Show Q3 2025 revenue",
+        "Show FY 2026 revenue",
+        "Show sales in 2030",
+        "Compare Q2 and Q3 revenue",
+        "What were sales last quarter?",
+    ],
+)
+def test_unsupported_scope_does_not_return_broader_totals(question):
+    assert guided_plan(question, {}).intent == "clarify"
+
+
+def test_live_scope_guard_does_not_call_provider(monkeypatch):
+    from ciq.agent import classify
+    from ciq.config import settings
+
+    monkeypatch.setattr(settings(), "agent_mode", "live")
+    result = classify({"question": "Show Oncora revenue", "context": {}})
+    assert result["plan"]["intent"] == "clarify"
+    assert result["usage"]["input_tokens"] == 0

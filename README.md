@@ -15,7 +15,7 @@ Built with **Next.js, TypeScript, FastAPI, PostgreSQL, and LangGraph**, the appl
 
 **All data is synthetic**, generated with a seeded Python script. Products and commercial outcomes are fictional. This independent portfolio project contains no patient, customer, or proprietary pharmaceutical data.
 
-[Business brief](docs/business-brief.md) · [Measured findings](docs/findings.md) · [Evaluation evidence](evals/results-guided-evidence.json) · [Release status](docs/evidence/release-status.md) · [Deployment guide](infra/README.md)
+[Two-minute walkthrough](docs/demo/README.md) · [Business brief](docs/business-brief.md) · [Measured findings](docs/findings.md) · [Evaluation evidence](evals/results-guided-evidence.json) · [Release status](docs/evidence/release-status.md) · [Deployment guide](infra/README.md)
 
 ---
 
@@ -142,11 +142,11 @@ The **60-case golden set** compares returned numbers with an independent Python 
 
 | Mode | Cases passed | Result accuracy | SQL validity | Refusal precision / recall | Median / p95 latency |
 |---|---:|---:|---:|---:|---:|
-| Guided regression | 60 / 60 | 100% | 100% | 100% / 100% | 638 / 1,347 ms |
+| Guided regression | 60 / 60 | 100% | 100% | 100% / 100% | 516 / 1,185 ms |
 | Live baseline prompt | Not run | — | — | — | — |
 | Live evidence prompt | Not run | — | — | — | — |
 
-**These are deterministic regression results, not LLM accuracy.** The guided suite has no failures on its bounded, development-visible cases. Unsupported filters, temporal paraphrases, and adversarial requests need broader coverage; some unsupported requests can be interpreted too broadly. The current benchmark is not a held-out generalization test.
+**These are deterministic regression results, not LLM accuracy.** The guided suite has no failures on its bounded, development-visible cases. Named product, therapy, channel, multi-country, and unsupported-period filters now trigger clarification, with regression tests for those boundaries. Unrecognized filters, temporal paraphrases, and adversarial requests still need broader coverage. The current benchmark is not a held-out generalization test.
 
 The live comparison runner requires fresh outputs, records all failed cases and token usage, and accepts explicit token prices for cost reporting. No model scores or costs are fabricated. Guided mode uses zero model tokens; unconfigured dollar costs remain null. [Raw benchmark results](evals/results-guided-evidence.json).
 
@@ -230,9 +230,9 @@ docs/              Business brief, findings, design decisions and evidence
 
 ## Verification and remaining release work
 
-**Verified:** 19 backend tests; 60 guided regression cases; production frontend build; HTTP checks for overview, investigations, feedback, saved briefs, analytics, authentication, origin rejection, and session isolation. BI totals reconcile with the API. Actual application screenshots are included above.
+**Verified:** 30 backend tests; 60 guided regression cases; production frontend build; HTTP checks for overview, investigations, feedback, saved briefs, analytics, authentication, origin rejection, and session isolation. BI totals reconcile with the API. Actual application screenshots are included above.
 
-**Implemented, awaiting external verification:** live-model prompt comparison and Langfuse traces, GCP/Vercel/managed PostgreSQL deployment, and native Tableau rendering. The n8n report node has executed successfully and the weekly schedule is published; unattended execution is not yet verified. A two-minute demo script exists; a recorded interactive demo remains pending.
+**Implemented, awaiting external verification:** live-model prompt comparison and Langfuse traces, GCP/Vercel/managed PostgreSQL deployment, and native Tableau rendering. The n8n report node has executed successfully and the weekly schedule is published; unattended execution is not yet verified. A two-minute narrated screenshot walkthrough is included; a live interaction recording remains pending.
 
 The project is a working local portfolio application, not a completed hosted production release. See the [release evidence](docs/evidence/release-status.md) for exact verification boundaries.
 

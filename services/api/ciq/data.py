@@ -171,6 +171,18 @@ def load(seed: int = SEED):
                         with cur.copy(f"COPY warehouse.{table} FROM STDIN") as copy:
                             for row in rows:
                                 copy.write_row(row)
+                # Refresh planner statistics before exposing a newly seeded dataset.
+                # Small dimension tables otherwise inherit default cardinality guesses.
+                for table in (
+                    "dim_date",
+                    "dim_product",
+                    "dim_region",
+                    "dim_rep",
+                    "dim_channel",
+                    "fact_sales",
+                    "fact_targets",
+                ):
+                    conn.execute(f"ANALYZE warehouse.{table}")
                 metadata = {
                     "data_version": data["data_version"],
                     "seed": seed,

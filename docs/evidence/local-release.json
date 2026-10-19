@@ -1,0 +1,11 @@
+{
+  "verified_on": "2026-10-19",
+  "backend_tests": {"passed": 30, "failed": 0},
+  "guided_benchmark": {"passed": 60, "total": 60, "median_ms": 516, "p95_ms": 1185},
+  "frontend_production_build": "passed",
+  "docker_http_smoke": "passed; see docker-smoke.json",
+  "walkthrough": {"type": "narrated screenshots", "duration_seconds": 120.05, "decode": "passed", "narration_not_truncated": true},
+  "browser_qa": "Blocked for final changes: browser access disabled in Work settings",
+  "native_tableau_validation": "Not available: Tableau is not installed",
+  "cloud_work": "Deferred at user request; local release first"
+}

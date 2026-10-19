@@ -402,6 +402,10 @@ h3 {
   letter-spacing: -1px;
   font-weight: 600;
 }
+.kpi-value > span {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 .kpi-value small {
   font-size: 17px;
   color: #8295a5;
@@ -409,6 +413,8 @@ h3 {
 .sparkline {
   margin-left: auto;
   width: 75px;
+  min-width: 0;
+  flex-shrink: 1;
 }
 .negative-value {
   color: #e1a77e;
