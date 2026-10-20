@@ -1,24 +1,13 @@
-# Business intelligence dashboard handoff
+# Tableau handoff
 
-Run `python scripts/export_bi.py` from the configured environment. It exports the complete `analytics.v_performance` view, preserving the source data version in `manifest.json`. The fixed export query uses the restricted role. The interactive query tool's 200-row limit does not apply to this trusted batch job.
+The workbook is generated from the same synthetic portfolio export used by the web dashboard. Run `python scripts/export_bi.py` to refresh `portfolio.csv` and its `manifest.json`, then run `python scripts/build_tableau.py` to build the workbook package.
 
-## Tableau dashboard specification
+`atlas-commercial-review.twbx` contains the CSV, manifest, six views (monthly revenue, revenue by market, product plan variance, attainment by market, revenue by channel, and portfolio revenue), and a dashboard named **Commercial performance review**. The builder starts from a Tableau Desktop 2026.2 workbook saved with the connected text source, then adds native workbook view definitions. The dataset contains 12,288 synthetic rows; it is not MSD or patient data.
 
-Connect Tableau Public/Desktop to `portfolio.csv`; set month to Date and revenue/target/gap to decimal. Build a 1200×800 dashboard named “Commercial performance review” with:
+## Validation status
 
-1. Country and month-range filters applied to every sheet.
-2. Revenue KPI: `SUM([revenue])`.
-3. Attainment KPI: `SUM([revenue])/SUM([target])` formatted as a percentage.
-4. Growth KPI: `SUM([revenue])/SUM([prior_year_revenue])-1`; suppress incomplete prior-year coverage rather than treating nulls as zero.
-5. Monthly revenue line with target comparison.
-6. Country bar chart sorted by `SUM([gap])` ascending.
-7. Product variance bar chart, with a zero reference line.
-8. Footer: “Synthetic data · Reporting USD · [data version from manifest]”.
+The builder checks the CSV row count against the export manifest and verifies that the generated TWB XML includes all six worksheets and the dashboard. The TWBX ZIP structure and embedded CSV are also checked in CI. Numerical reconciliation is separate: `.venv/bin/python scripts/verify_bi.py` compares exported totals with PostgreSQL and requires the local database to be running.
 
-Use the same country and date filters as the web dashboard to reconcile totals. Do not average the row-level attainment column. Portfolio share requires the selected portfolio denominator, not a market total.
+**Native render is still unverified.** Tableau Desktop Free 2026.2 successfully ingested the source CSV (13 fields, 12,288 rows). The earlier hand-authored workbook failed to open because it lacked Tableau-generated workbook metadata; the builder now uses a native Tableau workbook template. During the latest render check, Tableau became unresponsive before it displayed the generated dashboard, and the UI bridge timed out. The current dashboard also does not yet include interactive country and month-range controls or a verified Tableau screenshot. Treat this package as a review candidate until the dashboard opens and its marks and layout are checked in Tableau.
 
-`atlas-commercial-review.twbx` now packages six worksheets, a dashboard layout, and the complete CSV. Regenerate it with `scripts/build_tableau.py`. XML structure and package contents are checked. Tableau is not installed here, so native rendering, filter interaction, formatting and a dashboard screenshot remain unverified; do not treat this as a finished BI deliverable yet.
-
-The verified export has 12,288 rows; Q3 2026 revenue and target totals reconcile with the API.
-
-Run `.venv/bin/python scripts/verify_bi.py` to reconcile the CSV inside the TWBX against database totals for all-market Q3, Kuwait YTD and Qatar FY scopes. It checks revenue, target, gap and aggregate attainment. The same check runs in CI. This verifies numerical consistency, not Tableau rendering.
+Do not publish the synthetic workbook to Tableau Public. Use the packaged workbook locally in Tableau Desktop Free, or provide the CSV to another BI tool.

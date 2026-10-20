@@ -33,6 +33,8 @@ jobs:
         run: .venv/bin/pytest -q
       - name: Guided benchmark
         run: .venv/bin/python evals/run.py
+      - name: Build Tableau workbook
+        run: .venv/bin/python scripts/build_tableau.py
       - name: Reconcile packaged BI data
         run: .venv/bin/python scripts/verify_bi.py
       - name: Production build
